@@ -1,0 +1,23 @@
+.Brokerage img {
+  width: 50%;
+}
+
+.pricingHero {
+  margin-bottom: 10rem;
+}
+
+.centerHero h2 {
+  margin-top: 10rem;
+}
+
+.free-row free {
+  color: green !important;
+}
+
+.openAccChargeTable {
+  margin-bottom: 6rem;
+}
+
+.AddedServiceTable {
+  margin-bottom: 9rem;
+}

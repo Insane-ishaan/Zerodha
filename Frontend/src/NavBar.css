@@ -1,0 +1,19 @@
+.navBar-layout {
+  margin-bottom: 5rem;
+}
+.navbar {
+  position: fixed;
+  top: 0;
+  z-index: 10;
+  background-color: #fff;
+}
+
+.Zerodha-nav-logo {
+  width: 22%;
+  margin: 0 0 0.5rem 3rem;
+  padding-right: 1rem;
+}
+
+.collapse li {
+  margin-right: 1.5rem;
+}

@@ -1,0 +1,13 @@
+.ceoImg img {
+  border-radius: 100%;
+  width: 50%;
+}
+
+.hero-para-text h3 {
+  font-size: medium;
+}
+
+a {
+  color: #2883ceff;
+  text-decoration: none;
+}

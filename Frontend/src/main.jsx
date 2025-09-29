@@ -1,9 +1,28 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import HomePage from "./landingPage/home/HomePageWrapper.jsx";
+import SignUp from "./landingPage/signUp/SignUp.jsx";
+import AboutWrapper from "./landingPage/about/AboutWrapper.jsx";
+import ProductWrapper from "./landingPage/products/ProductWrapper.jsx";
+import PricingWrapper from "./landingPage/pricing/PricingWrapper.jsx";
+import SupportWrapper from "./landingPage/support/SupportWrapper.jsx";
+import SupportPage from "./notFound.jsx";
+import NavBar from "./NavBar.jsx";
+import Footer from "./Footer.jsx";
 
 createRoot(document.getElementById("root")).render(
-  <StrictMode>
-    <HomePage />
-  </StrictMode>
+  <BrowserRouter>
+    <NavBar />
+    <Routes>
+      <Route path="/" element={<HomePage />}></Route>
+      <Route path="/signup" element={<SignUp />}></Route>
+      <Route path="/about" element={<AboutWrapper />}></Route>
+      <Route path="/products" element={<ProductWrapper />}></Route>
+      <Route path="/pricing" element={<PricingWrapper />}></Route>
+      <Route path="/support" element={<SupportWrapper />}></Route>
+      <Route path="*" element={<SupportPage />} />
+    </Routes>
+    <Footer />
+  </BrowserRouter>
 );
