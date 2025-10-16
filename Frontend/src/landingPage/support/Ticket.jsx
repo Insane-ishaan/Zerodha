@@ -79,7 +79,7 @@ function Ticket() {
   ];
   return (
     <div className="container">
-      <h4 className="fw-normal ps-5">
+      <h4 className="fw-normal ps-5 display-6">
         To create a Ticket, select a relevant topic
       </h4>
       <div className="row mt-3">
