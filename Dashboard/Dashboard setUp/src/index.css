@@ -1,12 +1,74 @@
-.Navbar {
-  background-color: rgb(255, 255, 255);
-  color: rgb(255, 89, 59);
-  position: fixed;
-  top: 0;
-  left: 0;
-  border-bottom: 1px solid rgb(208, 204, 204);
+/* NAVBAR STYLING */
+.NavBar-Icon {
+  margin-left: 1rem;
 }
 
-.AccountName {
-  margin: 0 1rem;
+.NavBar-Icon img {
+  height: 3rem;
+  background-color: transparent;
+}
+
+.left-navBar {
+  display: flex;
+}
+
+.sunsex {
+  margin-left: 19rem;
+}
+
+.selected {
+  color: orange;
+}
+
+/* ORDERS */
+.orders .order-nestDiv {
+  margin-top: 10rem;
+  margin-left: 5rem;
+  text-align: center;
+}
+
+/* HOLDINGS */
+.Holdings-heading {
+  margin-top: 4rem;
+}
+.holdings-table {
+  margin-left: auto;
+  width: 60vw !important;
+}
+
+.holdings-result {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5rem;
+}
+
+.holdings-sub-result {
+  display: flex;
+  justify-content: space-between;
+  margin-top: -1rem;
+}
+
+.holdings-result-conclusion {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5rem;
+}
+
+/* HOLDINGS NAV OPTION'S PAGE ... STYLING */
+.profit {
+  color: green !important;
+}
+
+.loss {
+  color: red !important;
+}
+
+/* POSITIONS NAV OPTIONS'S PAGE ... STYLING */
+.positions-heading {
+  margin-top: 4rem;
+}
+
+.positions-table {
+  margin-left: auto;
+  width: 60vw !important;
 }
