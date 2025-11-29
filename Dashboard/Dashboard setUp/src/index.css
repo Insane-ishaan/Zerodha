@@ -72,3 +72,20 @@
   margin-left: auto;
   width: 60vw !important;
 }
+
+/* WatchList Styling */
+.list-group-item {
+  position: relative; /* allows absolute children */
+  overflow: visible; /* ensures overlay isn't clipped */
+}
+
+.watchlist-popup {
+  position: absolute;
+  right: 0; /* aligns to right edge */
+  z-index: 1000; /* ensures it sits above everything */
+}
+
+.watchlist-popup > * {
+  border-radius: 6px;
+  padding: 8px;
+}

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { watchlist } from "../Data/data";
 import { Tooltip, Grow } from "@mui/material";
+import "./index.css";
 
 import {
   BarChartOutlined,
@@ -65,15 +66,19 @@ const WatchListItem = ({ stock }) => {
             {stock.price}
           </span>
         </div>
+        {selectOption && (
+          <div className="watchlist-popup">
+            <WatchListAction stock={stock.name} />
+          </div>
+        )}
       </div>
-      {selectOption && <WatchListAction stock={stock.name} />}
     </li>
   );
 };
 
 const WatchListAction = ({ stock }) => {
   return (
-    <span className="actions">
+    <span className="actions watchList">
       <span>
         <Tooltip
           title="Buy (B)"
@@ -81,7 +86,9 @@ const WatchListAction = ({ stock }) => {
           arrow
           TransitionComponent={Grow}
         >
-          <button className="buy">Buy</button>
+          <button className="buy border rounded-2 me-2 btn btn-primary">
+            Buy
+          </button>
         </Tooltip>
         <Tooltip
           title="Sell (S)"
@@ -89,7 +96,9 @@ const WatchListAction = ({ stock }) => {
           arrow
           TransitionComponent={Grow}
         >
-          <button className="Sell">Sell</button>
+          <button className="Sell border rounded-2 me-2 btn btn-danger">
+            Sell
+          </button>
         </Tooltip>
         <Tooltip
           title="Analytics (A)"
@@ -97,8 +106,8 @@ const WatchListAction = ({ stock }) => {
           arrow
           TransitionComponent={Grow}
         >
-          <button className="action">
-            <BarChartOutlined className="icon" />
+          <button className="action border-0 icons">
+            <BarChartOutlined className="icon text-info" />
           </button>
         </Tooltip>
         <Tooltip
@@ -107,7 +116,7 @@ const WatchListAction = ({ stock }) => {
           arrow
           TransitionComponent={Grow}
         >
-          <button className="btn">
+          <button className="btn border-0 ext-body-tertiary icons">
             <MoreHoriz className="icon" />
           </button>
         </Tooltip>
