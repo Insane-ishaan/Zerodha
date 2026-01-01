@@ -1,39 +1,33 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { FlashContext } from "../../FlashContext";
 import FlashToast from "../../FlashToast";
-const SignUpValidationSchema = Yup.object({
-  username: Yup.string()
-    .min(3, "Username must be at least 3 characters")
-    .max(20, "Username must be at most 20 characters")
-    .required("Username Required"),
+const SignInValidationSchema = Yup.object({
   email: Yup.string().email("Invalid email format").required("Email Required"),
   password: Yup.string()
     .min(6, "Password must be at least 6 characters")
     .required("Password Required"),
 });
 
-function SignUp() {
+function SignIn() {
   const [loading, setLoading] = useState(false);
   const { showFlash } = useContext(FlashContext);
-  const navigate = useNavigate();
+
   const formik = useFormik({
     initialValues: {
-      username: "",
       email: "",
       password: "",
     },
-    validationSchema: SignUpValidationSchema,
+    validationSchema: SignInValidationSchema,
     onSubmit: async (values) => {
       setLoading(true);
       try {
         const res = await axios.post(
-          "http://localhost:3000/signup",
+          "http://localhost:3000/signin",
           {
-            name: values.username,
             email: values.email,
             password: values.password,
           },
@@ -43,7 +37,7 @@ function SignUp() {
         );
 
         if (res.data.success) {
-          showFlash("success", res.data?.message || "Welcome To Zerodha World");
+          showFlash("success", res.data?.message || "Welcome Back Buddy");
           window.location.replace(import.meta.env.VITE_DASHBOARD_URL);
           return;
         }
@@ -64,42 +58,22 @@ function SignUp() {
       <FlashToast />
       <div className="row justify-content-center" style={{ margin: "8rem" }}>
         <form
-          className="col-8 col-md-6 col-lg-4 m-5 d-flex flex-column"
+          className="col-8 col-md-6 col-lg-4 m-5 d-flex flex-column needs-validation"
           noValidate
           onSubmit={formik.handleSubmit}
         >
           <div className="form-floating mb-3">
             <input
-              type="username"
-              name="username"
-              id="floatingInput1"
-              placeholder="username"
-              className={`form-control ${
-                formik.touched.username && formik.errors.username
-                  ? "is-invalid"
-                  : ""
-              }`}
-              value={formik.values.username}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-            />
-            <label htmlFor="floatingInput">Username</label>
-            {formik.touched.username && formik.errors.username && (
-              <div className="invalid-feedback">{formik.errors.username}</div>
-            )}
-          </div>
-          <div className="form-floating mb-3">
-            <input
               type="email"
               name="email"
-              id="floatingInput2"
-              placeholder="name@example.com"
               className={`form-control ${
                 formik.touched.email && formik.errors.email ? "is-invalid" : ""
               }`}
               value={formik.values.email}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
+              id="floatingInput"
+              placeholder="name@example.com"
             />
             <label htmlFor="floatingInput">Email address</label>
             {formik.touched.email && formik.errors.email && (
@@ -130,9 +104,10 @@ function SignUp() {
             className={`btn btn-success mt-3 ms-auto ps-4 pe-4 ${
               loading ? "disabled" : ""
             }`}
+            disabled={formik.isSubmitting}
             type="submit"
           >
-            Sign up
+            Sign in
           </button>
         </form>
       </div>
@@ -140,4 +115,4 @@ function SignUp() {
   );
 }
 
-export default SignUp;
+export default SignIn;

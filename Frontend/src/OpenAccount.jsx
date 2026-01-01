@@ -1,3 +1,6 @@
+import { useState } from "react";
+import { Link } from "react-router-dom";
+
 function OpenAcc() {
   return (
     <center className="container">
@@ -8,9 +11,11 @@ function OpenAcc() {
         Online platform to invest in stocks, derivatives, mutual funds, ETFs,
         bonds, and more. Sign up for free
       </h2>
-      <button className="btn btn-primary mt-5 fs-5 ps-5 pe-5 mb-5">
-        Sign up for free
-      </button>
+      <Link to="/signup">
+        <button className="btn btn-primary mt-5 fs-5 ps-5 pe-5 mb-5">
+          Sign up for free
+        </button>
+      </Link>
     </center>
   );
 }

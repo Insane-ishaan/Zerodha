@@ -1,11 +1,21 @@
-import { positions } from "../Data/data";
+/* import { positions } from "../Data/data"; */
+import axios from "axios";
+import { useState, useEffect } from "react";
 import "./index.css";
 
 function Positions() {
+  const [allPositions, setPositions] = useState([]);
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/allPositions")
+      .then((res) => setPositions(res.data));
+  }, []);
   return (
     <div className="ms-5 mt-2">
-      <h4 className="positions-heading">positions({positions.length})</h4>
-      <table className="table table-striped positions-table">
+      <h4 className="positions-heading ms-5">
+        positions({allPositions.length})
+      </h4>
+      <table className="table table-striped positions-table ms-5">
         <thead>
           <tr>
             <th scope="col">Product</th>
@@ -20,7 +30,7 @@ function Positions() {
           </tr>
         </thead>
         <tbody>
-          {positions.map((value, index) => {
+          {allPositions.map((value, index) => {
             const currVal = value.price * value.qty;
             const isProfit = currVal - value.avg >= 0.0;
             const profitClass = isProfit ? "profit" : "loss";

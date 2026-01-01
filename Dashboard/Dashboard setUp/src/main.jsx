@@ -3,17 +3,19 @@ import { createRoot } from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NavBar from "./TopBar.jsx";
 import "./index.css";
-import Index from "./index.jsx";
 import Dashboard from "./Dashboard.jsx";
-import Home from "./Home.jsx";
+import { FlashContextProvider } from "./FlashContext.jsx";
+import FlashToast from "./FlashToast.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <BrowserRouter>
-      <NavBar />
-      <Routes>
-        <Route path="/*" element={<Dashboard />}></Route>
-      </Routes>
-    </BrowserRouter>
+    <FlashContextProvider>
+      <BrowserRouter>
+        <NavBar />
+        <Routes>
+          <Route path="/*" element={<Dashboard />}></Route>
+        </Routes>
+      </BrowserRouter>
+    </FlashContextProvider>
   </StrictMode>
 );

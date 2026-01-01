@@ -1,6 +1,9 @@
 import React from "react";
 import "./NavBar.css";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import { useEffect } from "react";
+import { useState } from "react";
 
 function NavBar() {
   return (
@@ -28,11 +31,6 @@ function NavBar() {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <Link className="nav-link  " aria-current="page" to="/signup">
-                  Signup
-                </Link>
-              </li>
-              <li className="nav-item">
                 <Link className="nav-link" to="/about">
                   About
                 </Link>
@@ -52,36 +50,15 @@ function NavBar() {
                   Support
                 </Link>
               </li>
-              <li className="nav-item dropdown">
-                <a
-                  className="nav-link dropdown-toggle"
-                  href="#"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  More
-                </a>
-                <ul className="dropdown-menu">
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      Action
-                    </a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      Another action
-                    </a>
-                  </li>
-                  <li>
-                    <hr className="dropdown-divider"></hr>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      Something else here
-                    </a>
-                  </li>
-                </ul>
+              <li className="nav-item">
+                <Link className="nav-link  " aria-current="page" to="/signup">
+                  Sign up
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link  " aria-current="page" to="/signin">
+                  Sign in
+                </Link>
               </li>
               {/*    <li class="nav-item dropdown">
                 <a

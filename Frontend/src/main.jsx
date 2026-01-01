@@ -10,19 +10,24 @@ import SupportWrapper from "./landingPage/support/SupportWrapper.jsx";
 import SupportPage from "./notFound.jsx";
 import NavBar from "./NavBar.jsx";
 import Footer from "./Footer.jsx";
+import SignIn from "./landingPage/SignIn/signIn.jsx";
+import { FlashContextProvider } from "./FlashContext.jsx";
 
 createRoot(document.getElementById("root")).render(
-  <BrowserRouter>
-    <NavBar />
-    <Routes>
-      <Route path="/" element={<HomePage />}></Route>
-      <Route path="/signup" element={<SignUp />}></Route>
-      <Route path="/about" element={<AboutWrapper />}></Route>
-      <Route path="/products" element={<ProductWrapper />}></Route>
-      <Route path="/pricing" element={<PricingWrapper />}></Route>
-      <Route path="/support" element={<SupportWrapper />}></Route>
-      <Route path="*" element={<SupportPage />} />
-    </Routes>
-    <Footer />
-  </BrowserRouter>
+  <FlashContextProvider>
+    <BrowserRouter>
+      <NavBar />
+      <Routes>
+        <Route path="/" element={<HomePage />}></Route>
+        <Route path="/signup" element={<SignUp />}></Route>
+        <Route path="/about" element={<AboutWrapper />}></Route>
+        <Route path="/products" element={<ProductWrapper />}></Route>
+        <Route path="/pricing" element={<PricingWrapper />}></Route>
+        <Route path="/support" element={<SupportWrapper />}></Route>
+        <Route path="/signin" element={<SignIn />}></Route>
+        <Route path="*" element={<SupportPage />} />
+      </Routes>
+      <Footer />
+    </BrowserRouter>
+  </FlashContextProvider>
 );
