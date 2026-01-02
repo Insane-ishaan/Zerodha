@@ -1,0 +1,105 @@
+/* NAVBAR STYLING */
+.NavBar-Icon {
+  margin-left: 1rem;
+}
+
+.NavBar-Icon img {
+  height: 3rem;
+  background-color: transparent;
+}
+
+.left-navBar {
+  display: flex;
+}
+
+.sunsex {
+  margin-left: 19rem;
+}
+
+.selected {
+  color: orange;
+}
+
+.SignOutOpt {
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.SignOutOpt:hover {
+  color: brown;
+}
+/* ORDERS */
+.orders .order-NoOrders {
+  margin-top: 10rem;
+  margin-left: 5rem;
+  text-align: center;
+}
+
+.orders .orders-WithOrders {
+  margin-top: 2rem;
+  margin-left: 5rem;
+  text-align: center;
+}
+
+/* HOLDINGS */
+.Holdings-heading {
+  margin-top: 4rem;
+}
+.holdings-table {
+  margin-left: auto;
+  width: 60vw !important;
+}
+
+.holdings-result {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5rem;
+}
+
+.holdings-sub-result {
+  display: flex;
+  justify-content: space-between;
+  margin-top: -1rem;
+}
+
+.holdings-result-conclusion {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5rem;
+}
+
+/* HOLDINGS NAV OPTION'S PAGE ... STYLING */
+.profit {
+  color: green !important;
+}
+
+.loss {
+  color: red !important;
+}
+
+/* POSITIONS NAV OPTIONS'S PAGE ... STYLING */
+.positions-heading {
+  margin-top: 4rem;
+}
+
+.positions-table {
+  margin-left: auto;
+  width: 60vw !important;
+}
+
+/* WatchList Styling */
+.list-group-item {
+  position: relative; /* allows absolute children */
+  overflow: visible; /* ensures overlay isn't clipped */
+}
+
+.watchlist-popup {
+  position: absolute;
+  right: 0; /* aligns to right edge */
+  z-index: 1000; /* ensures it sits above everything */
+}
+
+.watchlist-popup > * {
+  border-radius: 6px;
+  padding: 8px;
+}
