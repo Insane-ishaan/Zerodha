@@ -169,18 +169,39 @@ const { UserModel } = require("./models/userModels");
 }); */
 
 app.get("/allHoldings", authMiddleware, async (req, res) => {
-  let holdingData = await HoldingModel.find({});
-  res.json(holdingData);
+  try {
+    let holdingData = await HoldingModel.find({});
+    res.json(holdingData);
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: "Failed to load holdings",
+    });
+  }
 });
 
 app.get("/allPositions", async (req, res) => {
-  let positionaData = await PositionsModel.find({});
-  res.json(positionaData);
+  try {
+    let positionaData = await PositionsModel.find({});
+    res.json(positionaData);
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: "Failed to load positions",
+    });
+  }
 });
 
 app.get("/allOrders", authMiddleware, async (req, res) => {
-  let ordersData = await OrderModel.find({ userId: req.user.id });
-  res.json(ordersData);
+  try {
+    let ordersData = await OrderModel.find({ userId: req.user.id });
+    res.json(ordersData);
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: "Failed to load orders",
+    });
+  }
 });
 
 app.post("/newOrder", authMiddleware, (req, res) => {
@@ -259,8 +280,6 @@ app.post("/sell", authMiddleware, async (req, res) => {
     const { name, totalPrice, pricePerUnit, qty } = req.body;
     const id = req.user.id;
     const sellQty = Number(qty);
-    console.log(id);
-    console.log(name);
     const holding = await HoldingModel.findOne({
       name,
     });
@@ -299,33 +318,37 @@ app.post("/sell", authMiddleware, async (req, res) => {
 });
 
 app.post("/signup", async (req, res) => {
-  let { name, email, password } = req.body;
+  try {
+    let { name, email, password } = req.body;
 
-  let user = await UserModel.findOne({ email: email });
-  if (user) return res.status(409).send("User already exists");
+    let user = await UserModel.findOne({ email: email });
+    if (user) return res.status(409).send("User already exists");
 
-  const hashedPass = await bcrypt.hash(password, 10);
+    const hashedPass = await bcrypt.hash(password, 10);
 
-  const newUser = await UserModel.create({
-    name: name,
-    email: email,
-    password: hashedPass,
-  });
+    const newUser = await UserModel.create({
+      name: name,
+      email: email,
+      password: hashedPass,
+    });
 
-  const token = jwt.sign(
-    { email: newUser.email, userId: newUser._id },
-    process.env.JWT_SECRET,
-    { expiresIn: "1d" }
-  );
+    const token = jwt.sign(
+      { email: newUser.email, userId: newUser._id },
+      process.env.JWT_SECRET,
+      { expiresIn: "1d" }
+    );
 
-  res.cookie("token", token, {
-    sameSite: process.env.Node_ENV === "production" ? "none" : "lax",
-    httpOnly: true,
-    secure: process.env.Node_ENV == "production",
-  });
-  return res
-    .status(200)
-    .json({ success: true, message: "Welcome To Zerodha Investment World" });
+    res.cookie("token", token, {
+      sameSite: process.env.Node_ENV === "production" ? "none" : "lax",
+      httpOnly: true,
+      secure: process.env.Node_ENV == "production",
+    });
+    return res
+      .status(200)
+      .json({ success: true, message: "Welcome To Zerodha Investment World" });
+  } catch (err) {
+    res.status(500).json({ success: false, message: "Something went wrong" });
+  }
 });
 
 app.post("/signin", async (req, res) => {
@@ -364,7 +387,7 @@ app.post("/signin", async (req, res) => {
       message: "Welcome Back",
     });
   } catch (e) {
-    res.status(500).json({ success: false });
+    res.status(500).json({ success: false, message: "Something went wrong" });
   }
 });
 
@@ -395,7 +418,7 @@ app.get("/authuser", async (req, res) => {
 
     res.json({ success: true, findUser });
   } catch (err) {
-    res.status(401).json({ success: false });
+    res.status(401).json({ success: false, message: "Something went wrong" });
   }
 });
 

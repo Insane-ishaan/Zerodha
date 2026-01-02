@@ -35,7 +35,7 @@ function Summary() {
   return (
     <div className="ms-5 mt-2 d-flex flex-column ">
       <h1 className="display-5 ms-auto">Stock Summary</h1>
-      <div style={{ marginLeft: "5rem", height: "80vh" }}>
+      <div style={{ marginLeft: "15rem" }}>
         <DoughnutChart data={data} />
       </div>
     </div>

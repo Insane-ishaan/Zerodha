@@ -44,11 +44,11 @@ const WatchListItem = ({ stock }) => {
     <li
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className="list-group-item list-group-item-action border-0 border-top border-bottom"
+      className="list-group-item list-group-item-action border-0 border-top border-bottom position-relative"
     >
-      <div className="d-flex list-group-item list-group-item-action list-group-item-light">
+      <div className="d-flex flex-wrap align-items-center list-group-item list-group-item-action list-group-item-light">
         <p className={stock.isDown ? "loss" : "profit"}>{stock.name}</p>
-        <div className="data-items ms-auto">
+        <div className="data-items ms-md-auto">
           <span>{stock.percent}</span>
           <span>
             {stock.isDown ? (
