@@ -8,25 +8,27 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
 const allowedOrigins = [
-  "http://localhost:5174", // FRONTEND
-  "http://localhost:5173", // DASHBOARD
+  "http://localhost:5174",
+  "http://localhost:5173",
+  "https://dashboard-a.netlify.app",
+  "https://dashboard-b.netlify.app",
 ];
 
 app.use(
   cors({
-    origin: function (origin, callback) {
-      // allow requests with no origin (Postman, server-to-server)
-      if (!origin) return callback(null, true);
-
-      if (allowedOrigins.includes(origin)) {
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin)) {
         callback(null, true);
       } else {
-        callback(new Error("Not allowed by CORS"));
+        callback(null, false);
       }
     },
     credentials: true,
   })
 );
+
+app.set("trust proxy", 1);
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
@@ -339,9 +341,9 @@ app.post("/signup", async (req, res) => {
     );
 
     res.cookie("token", token, {
-      sameSite: process.env.Node_ENV === "production" ? "none" : "lax",
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
       httpOnly: true,
-      secure: process.env.Node_ENV == "production",
+      secure: process.env.NODE_ENV == "production",
     });
     return res
       .status(200)
