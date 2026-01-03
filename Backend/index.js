@@ -10,8 +10,8 @@ const cookieParser = require("cookie-parser");
 const allowedOrigins = [
   "http://localhost:5174",
   "http://localhost:5173",
-  "https://dashboard-a.netlify.app",
-  "https://dashboard-b.netlify.app",
+  "https://zerodhad.onrender.com",
+  "https://zerodhaf.onrender.com",
 ];
 
 app.use(
