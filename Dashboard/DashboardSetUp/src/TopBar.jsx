@@ -14,17 +14,20 @@ function NavBar() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/authuser", { withCredentials: true })
+      .get(`${import.meta.env.VITE_BASEBACKEND_URL}/authuser`, {
+        withCredentials: true,
+      })
       .then((res) => {
         setUserInfo(res.data.findUser);
       });
   }, []);
+
   const handleNavClicks = (index) => {
     return setClicked(index);
   };
 
   const handleLogOut = () => {
-    axios.get("http://localhost:3000/signout", {
+    axios.get(`${import.meta.env.VITE_BASEBACKEND_URL}/signout`, {
       withCredentials: true,
     });
     window.location.replace(import.meta.env.VITE_FRONTEND_URL);

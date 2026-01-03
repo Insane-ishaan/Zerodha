@@ -405,11 +405,11 @@ app.get("/signout", (req, res) => {
   }
 });
 
-app.get("/authuser", async (req, res) => {
+app.get("/authuser", authMiddleware, async (req, res) => {
   try {
     let token = req.cookies.token;
     if (!token) {
-      res.status(404).json({ success: false, message: "Invalid credentials" });
+      res.status(401).json({ success: false, message: "Unauthorized" });
       return;
     }
 

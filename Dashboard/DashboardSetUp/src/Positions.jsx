@@ -7,7 +7,9 @@ function Positions() {
   const [allPositions, setPositions] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:3000/allPositions")
+      .get(`${import.meta.env.VITE_BASEBACKEND_URL}/allPositions`, {
+        withCredentials: true,
+      })
       .then((res) => setPositions(res.data));
   }, []);
   return (

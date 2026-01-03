@@ -1,7 +1,27 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
+
 function RightDashboard() {
+  const [userInfo, setUserInfo] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(`${import.meta.env.VITE_BASEBACKEND_URL}/authuser`, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        setUserInfo(res.data.findUser);
+      });
+  }, []);
+
   return (
     <div className="row m-5">
-      <div className="h2 pb-5">Hi , User</div>
+      <div className="h2 pb-5">
+        Hi ,{" "}
+        {userInfo.name
+          ? userInfo.name.charAt(0).toUpperCase() + userInfo.name.slice(1)
+          : ""}
+      </div>
       <div
         className="border border-top mb-4 mt-3"
         style={{ color: "#000" }}

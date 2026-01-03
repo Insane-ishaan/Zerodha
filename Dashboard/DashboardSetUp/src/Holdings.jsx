@@ -41,7 +41,7 @@ function Holdings() {
       const totalPrc = selectedHolding.price * sellQty;
 
       const res = await axios.post(
-        "http://localhost:3000/sell",
+        `${import.meta.env.VITE_BASEBACKEND_URL}/sell`,
         {
           name: selectedHolding.name,
           totalPrice: totalPrc,
@@ -62,7 +62,9 @@ function Holdings() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/allHoldings", { withCredentials: true })
+      .get(`${import.meta.env.VITE_BASEBACKEND_URL}/allHoldings`, {
+        withCredentials: true,
+      })
       .then((res) => {
         setAllHolding(res.data);
       });

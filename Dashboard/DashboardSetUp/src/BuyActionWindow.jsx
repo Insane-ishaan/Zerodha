@@ -21,7 +21,7 @@ export default function BuyActionWindow() {
   const handleNewOrder = async () => {
     try {
       const res = await axios.post(
-        "http://localhost:3000/newOrder",
+        `${import.meta.env.VITE_BASEBACKEND_URL}/newOrder`,
         {
           name: stockName,
           totalPrice: totalPrice,
@@ -46,7 +46,7 @@ export default function BuyActionWindow() {
 
   const handleNewHoldings = () => {
     axios.post(
-      "http://localhost:3000/newHoldings",
+      `${import.meta.env.VITE_BASEBACKEND_URL}/newHoldings`,
       {
         name: stockName,
         qty: stockQuantity,

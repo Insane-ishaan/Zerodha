@@ -8,7 +8,9 @@ function Orders() {
   const navigate = useNavigate();
   useEffect(() => {
     axios
-      .get("http://localhost:3000/allOrders", { withCredentials: true })
+      .get(`${import.meta.env.VITE_BASEBACKEND_URL}/allOrders`, {
+        withCredentials: true,
+      })
       .then((res) => {
         setAllOrders(res.data);
       });

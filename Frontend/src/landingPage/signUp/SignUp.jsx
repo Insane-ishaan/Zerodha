@@ -31,7 +31,7 @@ function SignUp() {
       setLoading(true);
       try {
         const res = await axios.post(
-          "http://localhost:3000/signup",
+          `${import.meta.env.VITE_BASEBACKEND_URL}/signup`,
           {
             name: values.username,
             email: values.email,
